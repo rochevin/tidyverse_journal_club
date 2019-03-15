@@ -76,11 +76,12 @@ treatments <-
 rownames(treatments) <- c("John Smith","Jane Doe","Mary Johnson")
 ```
 
-\begin{center}
-```{r show1, echo=F}
-kable(treatments,"latex",caption = "Typical presentation dataset")
+
+```{r show1,results='asis'}
+treatments %>% kable(caption = "Typical presentation dataset") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
 ```
-\end{center}
+
 
 
 ```{r boxplot1, echo=TRUE, fig.height=4, fig.width=8}
@@ -94,11 +95,12 @@ boxplot(treatments)
 treatments.2 <- t(treatments)
 ```
 
-\begin{center}
-```{r, echo=F}
-kable(treatments.2,"latex",caption = "The same data but structured differently")
+
+```{r, echo=F,results='asis'}
+kable(treatments.2,caption = "The same data but structured differently") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
 ```
-\end{center}
+
 
 
 ```{r boxplot2, echo=TRUE, fig.height=3.8, fig.width=8}
@@ -108,13 +110,18 @@ boxplot(treatments.2)
 
 ## Why tidying a dataset ?
 
-\begin{center}
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r}
 treatments.3 <- tibble::rownames_to_column(treatments,var = "person")
 treatments.3 <- tidyr::gather(treatments.3,key="treatment",value = "result",-person)
-kable(treatments.3,"latex",caption = "An exemple of a tidy dataset")
 ```
-\end{center}
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE,results='asis'}
+
+kable(treatments.3,caption = "An exemple of a tidy dataset") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
 
 ```{r boxplot3, echo=TRUE, fig.height=3, fig.width=8, message=FALSE, warning=FALSE}
 boxplot(result~treatment,data=treatments.3)
@@ -295,12 +302,19 @@ __`dplyr`:__
 * Manipulate observations.
 * Group / summarise observations.
 
-\begin{center}
 ```{r}
 iris.tbl <- iris %>% as_tibble()
-iris.tbl %>% head() %>% kable(format = "latex",caption = "iris dataset")
 ```
-\end{center}
+
+
+
+```{r,results='asis'}
+
+iris.tbl %>% head() %>% kable(caption="iris dataset") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+```
+
 
 ###iris dataset
 The famous (Fisher’s or Anderson’s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica. (from ?iris)
@@ -394,8 +408,9 @@ iris.meta <- tibble(
     `Common name` = c("Beachhead iris","Harlequin blueflag","Virginia iris")
 )
 ```
-```{r}
-iris.meta %>% kable("latex",caption = "Metadata for iris dataset")
+```{r,results='asis'}
+iris.meta %>% kable(caption = "Metadata for iris dataset") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
 
@@ -544,8 +559,7 @@ knitr::include_graphics("images/join-anti.png")
 ```
 
 ##Filtering joins
-
-```{r echo=F, message=FALSE, warning=FALSE}
+```{r}
 treatment.meta <- tibble(
     First_Name = c("John","Jane"),
     Last_Name = c("Smith","Doe"),
@@ -553,7 +567,12 @@ treatment.meta <- tibble(
     sex = c("M","F"),
     adress = c("221B Baker Street","57 Rue de Varenne")
 )
-treatment.meta %>% kable("latex",caption = "Patients files")
+```
+
+```{r echo=F, message=FALSE, warning=FALSE,results='asis'}
+
+treatment.meta %>% kable(caption = "Patients files") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
 ```{r echo=TRUE}

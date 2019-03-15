@@ -16,7 +16,6 @@ output:
     toc_float: true
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 require(knitr)
@@ -158,7 +157,7 @@ read_tsv("iris.tsv",col_names = F) %>% pull(5) %>% str_to_title() %>% head
 set.seed(123)
 ```
 
-```{r,echo=T, fig.height=3, fig.width=8}
+```{r histo1,echo=T, fig.height=3, fig.width=8}
 ex.dat <- rnorm(n = 1000,mean = 5,sd=1)
 sub.dat <- sample(ex.dat,size = 100,replace=F)
 hist(sub.dat)
@@ -166,13 +165,13 @@ hist(sub.dat)
 
 ##Pipes vs no pipes : without pipe
 
-```{r,echo=T, fig.height=3, fig.width=8}
+```{r histo2,echo=T, fig.height=3, fig.width=8}
 hist(sample(rnorm(n = 1000,mean = 5,sd=1),size = 100,replace=F))
 ```
 
 ##Pipes vs no pipes : with pipe
 
-```{r,echo=T, fig.height=3, fig.width=8}
+```{r histo3,echo=T, fig.height=3, fig.width=8}
 rnorm(n = 1000,mean = 5,sd=1) %>%
     sample(size = 100,replace=F) %>%
     hist()
@@ -631,20 +630,20 @@ iris.tbl %>%
 
 ##A base plot
 \centering
-```{r echo=TRUE, fig.height=6, fig.width=10, message=FALSE, warning=FALSE}
+```{r base_plot1,echo=TRUE, fig.height=6, fig.width=10, message=FALSE, warning=FALSE}
 plot(Petal.Width~Petal.Length,data=iris.tbl)
 ```
 
 ##A ggplot2 plot
 \centering
-```{r echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+```{r ggplot1,echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
 iris.tbl %>% ggplot(aes(x=Petal.Width,y=Petal.Length)) +
     geom_point()
 ```
 
 ##A ggplot2 plot
 \centering
-```{r echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+```{r ggplot2,echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
 iris.tbl %>% ggplot(aes(x=Petal.Width,y=Petal.Length)) +
     geom_point() +
     geom_smooth(method = "lm")
@@ -674,7 +673,7 @@ The three components of every graphics :
 * __aesthetics__: aesthetics mapping between variables in the data (x,y,visuals properties, ...).
 * __geoms__: one or more layers to render each observations.
 
-```{r echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE,eval=F}
+```{r ggplot3,echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE,eval=F}
 p <- iris.tbl %>%# Data
     ggplot(aes(x=Petal.Width,y=Petal.Length)) +# aesthetics
     geom_point()# Layer: points
@@ -683,7 +682,7 @@ p <- iris.tbl %>%# Data
 
 Add layer : smooth with linear model
 
-```{r echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE,eval=F}
+```{r ggplot4,echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE,eval=F}
 p + geom_smooth(method = "lm")
 ```
 
@@ -691,7 +690,7 @@ More you add components with `+`, more you'll build sophisticated plots.
 
 ##Add more aesthetics
 
-```{r echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+```{r ggplot5,echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
 p <- iris.tbl %>%# Data
     ggplot(aes(x=Petal.Width,y=Petal.Length,col=Species)) +# aesthetics
     geom_point()# Layer: points
@@ -700,13 +699,13 @@ print(p)
 
 ##Add more aesthetics
 
-```{r echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+```{r ggplot6,echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
 p + geom_smooth(method = "lm")
 ```
 
 ##Add more aesthetics
 
-```{r echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+```{r ggplot7,echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
 p <- iris.tbl %>%# Data
     ggplot(aes(x=Petal.Width,y=Petal.Length)) +# aesthetics
     geom_point(aes(col=Species)) +# Layer: points
@@ -716,7 +715,7 @@ print(p)
 
 ##Other aesthetics attributes
 
-```{r echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+```{r ggplot8,echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
 p <- iris.tbl %>%# Data
     ggplot(aes(x=Petal.Width,y=Petal.Length)) +# aesthetics
     geom_point(aes(shape=Species))# Layer: points
@@ -726,7 +725,7 @@ print(p)
 
 ##Other aesthetics attributes
 
-```{r echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+```{r ggplot9,echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
 p <- iris.tbl %>%# Data
     ggplot(aes(x=Petal.Width,y=Petal.Length)) +# aesthetics
     geom_point(aes(col=Species,size = Sepal.Length))# Layer: points
@@ -735,7 +734,7 @@ print(p)
 
 ##Use fixed value
 
-```{r echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+```{r ggplot10,echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
 p <- iris.tbl %>%# Data
     ggplot(aes(x=Petal.Width,y=Petal.Length)) +# aesthetics
     geom_point(col="blue",size=4) +# Layer: points
@@ -745,7 +744,7 @@ print(p)
 
 ##Plot geoms
 
-```{r echo=F, fig.height=12, fig.width=22, message=FALSE, warning=FALSE}
+```{r ggplot11,echo=F, fig.height=12, fig.width=22, message=FALSE, warning=FALSE}
 
 p1 <- iris.tbl %>%# Data
     ggplot(aes(x=Species,y=Petal.Length)) +# aesthetics
@@ -776,7 +775,7 @@ __Facetting__:
 * `facet_wrap(variable~foliaces)` : Display only the plots having actual values.
 
 
-```{r echo=F, fig.height=12, fig.width=22, message=FALSE, warning=FALSE}
+```{r ggplot12,echo=F, fig.height=12, fig.width=22, message=FALSE, warning=FALSE}
 iris.tbl %>%
     gather(key = "Type",value = "obs",-Species) %>% separate(Type,into = c("Type_1","Type_2"),se="\\.") %>% ggplot(aes(x=Species,y = obs,fill=Species)) + geom_boxplot(width=0.5) + facet_grid(Type_2~Type_1,scales = "free") + theme_grey(base_size = 30) + theme(legend.position = "none")
 ```
@@ -784,7 +783,7 @@ iris.tbl %>%
 
 ##Graphical options
 
-```{r echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+```{r ggplot13,echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
 p <- iris.tbl %>%# Data
     ggplot(aes(x=Petal.Width,y=Petal.Length)) +# aesthetics
     geom_point(aes(col=Species,size = Sepal.Length)) +# Layer: points
@@ -794,7 +793,7 @@ print(p)
 
 ##Graphical options
 
-```{r echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+```{r ggplot14,echo=TRUE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
 p <- iris.tbl %>%# Data
     ggplot(aes(x=Petal.Width,y=Petal.Length)) +# aesthetics
     geom_point(aes(col=Species,size = Sepal.Length)) +# Layer: points
@@ -805,7 +804,7 @@ print(p)
 
 ##Themes
 
-```{r echo=F, fig.height=12, fig.width=22, message=FALSE, warning=FALSE}
+```{r ggplot15,echo=F, fig.height=12, fig.width=22, message=FALSE, warning=FALSE}
 p <- iris.tbl %>%# Data
     ggplot(aes(x=Petal.Width,y=Petal.Length)) +# aesthetics
     geom_point(aes(col=Species,size = Sepal.Length))#A new palette
@@ -835,7 +834,7 @@ cowplot::plot_grid(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10)
 
 ##Themes
 
-```{r echo=F, fig.height=12, fig.width=22, message=FALSE, warning=FALSE}
+```{r ggplot16,echo=F, fig.height=12, fig.width=22, message=FALSE, warning=FALSE}
 p <- iris.tbl %>%
     gather(key = "Type",value = "obs",-Species) %>% separate(Type,into = c("Type_1","Type_2"),se="\\.") %>% ggplot(aes(x=Species,y = obs,fill=Species)) + geom_boxplot(width=0.5) + facet_grid(Type_2~Type_1,scales = "free")
 p1 <- p + theme_grey(base_size = 22) + ggtitle("theme_grey") + theme(legend.position = "none") 
@@ -865,7 +864,7 @@ cowplot::plot_grid(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10)
 
 ##Themes
 
-```{r echo=F, fig.height=12, fig.width=22, message=FALSE, warning=FALSE}
+```{r ggplot17,echo=F, fig.height=12, fig.width=22, message=FALSE, warning=FALSE}
 p <- iris.tbl %>%
     gather(key = "Type",value = "obs",-Species) %>% separate(Type,into = c("Type_1","Type_2"),se="\\.") %>% ggplot(aes(x=Species,y = obs,fill=Species)) + geom_boxplot(width=0.5) + facet_grid(Type_2~Type_1,scales = "free") + ggtitle("Iris dataset")
 
@@ -905,3 +904,12 @@ cowplot::plot_grid(p,p1)
 * Easy facetting.
 * A lot of themes.
 * A lot of extensions ...
+
+##Sources
+
+\Large
+
+__Sources:__
+
+* __PDF and sources:__ [https://github.com/rochevin/tidyverse_journal_club](https://github.com/rochevin/tidyverse_journal_club)
+* __Web version:__ [https://rochevin.github.io/tidyverse_journal_club](https://rochevin.github.io/tidyverse_journal_club)

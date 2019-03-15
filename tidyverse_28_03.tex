@@ -228,11 +228,11 @@ A tidy dataset :\\
 \hline
   & treatment\_a & treatment\_b & treatment\_c\\
 \hline
-John Smith & 17 & 21 & 24\\
+John Smith & 13 & 20 & 21\\
 \hline
-Jane Doe & 21 & 24 & 19\\
+Jane Doe & 11 & 16 & 16\\
 \hline
-Mary Johnson & 21 & 21 & 20\\
+Mary Johnson & 10 & 21 & 22\\
 \hline
 \end{tabular}
 \end{table}
@@ -265,11 +265,11 @@ Mary Johnson & 21 & 21 & 20\\
 \hline
   & John Smith & Jane Doe & Mary Johnson\\
 \hline
-treatment\_a & 17 & 21 & 21\\
+treatment\_a & 13 & 11 & 10\\
 \hline
-treatment\_b & 21 & 24 & 21\\
+treatment\_b & 20 & 16 & 21\\
 \hline
-treatment\_c & 24 & 19 & 20\\
+treatment\_c & 21 & 16 & 22\\
 \hline
 \end{tabular}
 \end{table}
@@ -296,23 +296,23 @@ treatment\_c & 24 & 19 & 20\\
 \hline
 person & treatment & result\\
 \hline
-John Smith & treatment\_a & 17\\
+John Smith & treatment\_a & 13\\
 \hline
-Jane Doe & treatment\_a & 21\\
+Jane Doe & treatment\_a & 11\\
 \hline
-Mary Johnson & treatment\_a & 21\\
+Mary Johnson & treatment\_a & 10\\
 \hline
-John Smith & treatment\_b & 21\\
+John Smith & treatment\_b & 20\\
 \hline
-Jane Doe & treatment\_b & 24\\
+Jane Doe & treatment\_b & 16\\
 \hline
 Mary Johnson & treatment\_b & 21\\
 \hline
-John Smith & treatment\_c & 24\\
+John Smith & treatment\_c & 21\\
 \hline
-Jane Doe & treatment\_c & 19\\
+Jane Doe & treatment\_c & 16\\
 \hline
-Mary Johnson & treatment\_c & 20\\
+Mary Johnson & treatment\_c & 22\\
 \hline
 \end{tabular}
 \end{table}
@@ -405,7 +405,7 @@ Mary Johnson & treatment\_c & 20\\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-9-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/histo1-1.pdf}
 
 \end{frame}
 
@@ -417,7 +417,7 @@ Mary Johnson & treatment\_c & 20\\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-10-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/histo2-1.pdf}
 
 \end{frame}
 
@@ -431,7 +431,7 @@ Mary Johnson & treatment\_c & 20\\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-11-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/histo3-1.pdf}
 
 \end{frame}
 
@@ -502,9 +502,9 @@ Mary Johnson & treatment\_c & 20\\
 ## # A tibble: 3 x 4
 ##   `:)`         treatment_a treatment_b treatment_c
 ##   <chr>              <int>       <int>       <int>
-## 1 John Smith            17          21          24
-## 2 Jane Doe              21          24          19
-## 3 Mary Johnson          21          21          20
+## 1 John Smith            13          20          21
+## 2 Jane Doe              11          16          16
+## 3 Mary Johnson          10          21          22
 \end{verbatim}
 
 \end{frame}
@@ -632,15 +632,15 @@ the value.
 
 \begin{verbatim}
 ##         person   treatment result
-## 1   John Smith treatment_a     17
-## 2     Jane Doe treatment_a     21
-## 3 Mary Johnson treatment_a     21
-## 4   John Smith treatment_b     21
-## 5     Jane Doe treatment_b     24
+## 1   John Smith treatment_a     13
+## 2     Jane Doe treatment_a     11
+## 3 Mary Johnson treatment_a     10
+## 4   John Smith treatment_b     20
+## 5     Jane Doe treatment_b     16
 ## 6 Mary Johnson treatment_b     21
-## 7   John Smith treatment_c     24
-## 8     Jane Doe treatment_c     19
-## 9 Mary Johnson treatment_c     20
+## 7   John Smith treatment_c     21
+## 8     Jane Doe treatment_c     16
+## 9 Mary Johnson treatment_c     22
 \end{verbatim}
 
 \begin{Shaded}
@@ -651,9 +651,9 @@ the value.
 
 \begin{verbatim}
 ##         person treatment_a treatment_b treatment_c
-## 1     Jane Doe          21          24          19
-## 2   John Smith          17          21          24
-## 3 Mary Johnson          21          21          20
+## 1     Jane Doe          11          16          16
+## 2   John Smith          13          20          21
+## 3 Mary Johnson          10          21          22
 \end{verbatim}
 
 \end{frame}
@@ -668,15 +668,15 @@ the value.
 
 \begin{verbatim}
 ##   First Name Last Name   treatment result
-## 1       John     Smith treatment_a     17
-## 2       Jane       Doe treatment_a     21
-## 3       Mary   Johnson treatment_a     21
-## 4       John     Smith treatment_b     21
-## 5       Jane       Doe treatment_b     24
+## 1       John     Smith treatment_a     13
+## 2       Jane       Doe treatment_a     11
+## 3       Mary   Johnson treatment_a     10
+## 4       John     Smith treatment_b     20
+## 5       Jane       Doe treatment_b     16
 ## 6       Mary   Johnson treatment_b     21
-## 7       John     Smith treatment_c     24
-## 8       Jane       Doe treatment_c     19
-## 9       Mary   Johnson treatment_c     20
+## 7       John     Smith treatment_c     21
+## 8       Jane       Doe treatment_c     16
+## 9       Mary   Johnson treatment_c     22
 \end{verbatim}
 
 \end{frame}
@@ -701,7 +701,7 @@ the value.
 \begin{center}
 \begin{table}[t]
 
-\caption{\label{tab:unnamed-chunk-23}iris dataset}
+\caption{\label{tab:unnamed-chunk-20}iris dataset}
 \centering
 \begin{tabular}{r|r|r|r|l}
 \hline
@@ -911,7 +911,7 @@ other functions:
 
 \begin{table}[t]
 
-\caption{\label{tab:unnamed-chunk-35}Metadata for iris dataset}
+\caption{\label{tab:unnamed-chunk-32}Metadata for iris dataset}
 \centering
 \begin{tabular}{l|l|l|l}
 \hline
@@ -1311,7 +1311,7 @@ matching values in \texttt{y}, and all columns from \texttt{x} and
 
 \begin{table}[t]
 
-\caption{\label{tab:unnamed-chunk-56}Patients files}
+\caption{\label{tab:unnamed-chunk-53}Patients files}
 \centering
 \begin{tabular}{l|l|r|l|l}
 \hline
@@ -1334,12 +1334,12 @@ Jane & Doe & 33 & F & 57 Rue de Varenne\\
 
 \begin{verbatim}
 ##   First_Name Last_Name   treatment result
-## 1       John     Smith treatment_a     17
-## 2       Jane       Doe treatment_a     21
-## 3       John     Smith treatment_b     21
-## 4       Jane       Doe treatment_b     24
-## 5       John     Smith treatment_c     24
-## 6       Jane       Doe treatment_c     19
+## 1       John     Smith treatment_a     13
+## 2       Jane       Doe treatment_a     11
+## 3       John     Smith treatment_b     20
+## 4       Jane       Doe treatment_b     16
+## 5       John     Smith treatment_c     21
+## 6       Jane       Doe treatment_c     16
 \end{verbatim}
 
 \end{frame}
@@ -1519,7 +1519,7 @@ Jane & Doe & 33 & F & 57 Rue de Varenne\\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-64-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/base_plot1-1.pdf}
 
 \end{frame}
 
@@ -1534,7 +1534,7 @@ Jane & Doe & 33 & F & 57 Rue de Varenne\\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-65-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot1-1.pdf}
 
 \end{frame}
 
@@ -1550,7 +1550,7 @@ Jane & Doe & 33 & F & 57 Rue de Varenne\\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-66-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot2-1.pdf}
 
 \end{frame}
 
@@ -1624,7 +1624,7 @@ plots.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-70-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot5-1.pdf}
 
 \end{frame}
 
@@ -1636,7 +1636,7 @@ plots.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-71-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot6-1.pdf}
 
 \end{frame}
 
@@ -1652,7 +1652,7 @@ plots.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-72-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot7-1.pdf}
 
 \end{frame}
 
@@ -1667,7 +1667,7 @@ plots.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-73-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot8-1.pdf}
 
 \end{frame}
 
@@ -1682,7 +1682,7 @@ plots.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-74-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot9-1.pdf}
 
 \end{frame}
 
@@ -1698,13 +1698,13 @@ plots.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-75-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot10-1.pdf}
 
 \end{frame}
 
 \begin{frame}{Plot geoms}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-76-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot11-1.pdf}
 
 \end{frame}
 
@@ -1722,7 +1722,7 @@ plots.
   the plots having actual values.
 \end{itemize}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-77-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot12-1.pdf}
 
 \end{frame}
 
@@ -1738,7 +1738,7 @@ plots.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-78-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot13-1.pdf}
 
 \end{frame}
 
@@ -1755,25 +1755,25 @@ plots.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-79-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot14-1.pdf}
 
 \end{frame}
 
 \begin{frame}{Themes}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-80-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot15-1.pdf}
 
 \end{frame}
 
 \begin{frame}{Themes}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-81-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot16-1.pdf}
 
 \end{frame}
 
 \begin{frame}{Themes}
 
-\includegraphics{tidyverse_28_03_files/figure-beamer/unnamed-chunk-82-1.pdf}
+\includegraphics{tidyverse_28_03_files/figure-beamer/ggplot17-1.pdf}
 
 \end{frame}
 
@@ -1823,6 +1823,24 @@ plots.
   A lot of themes.
 \item
   A lot of extensions \ldots{}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Sources}
+
+\Large
+
+\textbf{Sources:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{PDF and sources:}
+  \url{https://github.com/rochevin/tidyverse_journal_club}
+\item
+  \textbf{Web version:}
+  \url{https://rochevin.github.io/tidyverse_journal_club}
 \end{itemize}
 
 \end{frame}

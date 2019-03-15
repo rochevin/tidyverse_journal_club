@@ -4,16 +4,13 @@ subtitle: "__The Tidyverse__: A collection of R packages designed for data scien
 author: "ROCHER Vincent"
 date: "28 mars 2019"
 output: 
-  html_document:
+  rmdformats::material:
     fig_caption: yes
     fig_height: 8
     fig_width: 10
     highlight: zenburn
     number_sections: yes
-    theme: flatly
-    toc: yes
-    toc_depth: 2
-    toc_float: true
+    cards: false
 ---
 
 ```{r setup, include=FALSE}

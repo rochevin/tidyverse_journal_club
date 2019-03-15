@@ -228,11 +228,11 @@ A tidy dataset :\\
 \hline
   & treatment\_a & treatment\_b & treatment\_c\\
 \hline
-John Smith & 13 & 20 & 21\\
+John Smith & 16 & 20 & 23\\
 \hline
-Jane Doe & 11 & 16 & 16\\
+Jane Doe & 17 & 18 & 25\\
 \hline
-Mary Johnson & 10 & 21 & 22\\
+Mary Johnson & 14 & 22 & 10\\
 \hline
 \end{tabular}
 \end{table}
@@ -265,11 +265,11 @@ Mary Johnson & 10 & 21 & 22\\
 \hline
   & John Smith & Jane Doe & Mary Johnson\\
 \hline
-treatment\_a & 13 & 11 & 10\\
+treatment\_a & 16 & 17 & 14\\
 \hline
-treatment\_b & 20 & 16 & 21\\
+treatment\_b & 20 & 18 & 22\\
 \hline
-treatment\_c & 21 & 16 & 22\\
+treatment\_c & 23 & 25 & 10\\
 \hline
 \end{tabular}
 \end{table}
@@ -296,23 +296,23 @@ treatment\_c & 21 & 16 & 22\\
 \hline
 person & treatment & result\\
 \hline
-John Smith & treatment\_a & 13\\
+John Smith & treatment\_a & 16\\
 \hline
-Jane Doe & treatment\_a & 11\\
+Jane Doe & treatment\_a & 17\\
 \hline
-Mary Johnson & treatment\_a & 10\\
+Mary Johnson & treatment\_a & 14\\
 \hline
 John Smith & treatment\_b & 20\\
 \hline
-Jane Doe & treatment\_b & 16\\
+Jane Doe & treatment\_b & 18\\
 \hline
-Mary Johnson & treatment\_b & 21\\
+Mary Johnson & treatment\_b & 22\\
 \hline
-John Smith & treatment\_c & 21\\
+John Smith & treatment\_c & 23\\
 \hline
-Jane Doe & treatment\_c & 16\\
+Jane Doe & treatment\_c & 25\\
 \hline
-Mary Johnson & treatment\_c & 22\\
+Mary Johnson & treatment\_c & 10\\
 \hline
 \end{tabular}
 \end{table}
@@ -502,9 +502,9 @@ Mary Johnson & treatment\_c & 22\\
 ## # A tibble: 3 x 4
 ##   `:)`         treatment_a treatment_b treatment_c
 ##   <chr>              <int>       <int>       <int>
-## 1 John Smith            13          20          21
-## 2 Jane Doe              11          16          16
-## 3 Mary Johnson          10          21          22
+## 1 John Smith            16          20          23
+## 2 Jane Doe              17          18          25
+## 3 Mary Johnson          14          22          10
 \end{verbatim}
 
 \end{frame}
@@ -632,15 +632,15 @@ the value.
 
 \begin{verbatim}
 ##         person   treatment result
-## 1   John Smith treatment_a     13
-## 2     Jane Doe treatment_a     11
-## 3 Mary Johnson treatment_a     10
+## 1   John Smith treatment_a     16
+## 2     Jane Doe treatment_a     17
+## 3 Mary Johnson treatment_a     14
 ## 4   John Smith treatment_b     20
-## 5     Jane Doe treatment_b     16
-## 6 Mary Johnson treatment_b     21
-## 7   John Smith treatment_c     21
-## 8     Jane Doe treatment_c     16
-## 9 Mary Johnson treatment_c     22
+## 5     Jane Doe treatment_b     18
+## 6 Mary Johnson treatment_b     22
+## 7   John Smith treatment_c     23
+## 8     Jane Doe treatment_c     25
+## 9 Mary Johnson treatment_c     10
 \end{verbatim}
 
 \begin{Shaded}
@@ -651,9 +651,9 @@ the value.
 
 \begin{verbatim}
 ##         person treatment_a treatment_b treatment_c
-## 1     Jane Doe          11          16          16
-## 2   John Smith          13          20          21
-## 3 Mary Johnson          10          21          22
+## 1     Jane Doe          17          18          25
+## 2   John Smith          16          20          23
+## 3 Mary Johnson          14          22          10
 \end{verbatim}
 
 \end{frame}
@@ -668,15 +668,15 @@ the value.
 
 \begin{verbatim}
 ##   First Name Last Name   treatment result
-## 1       John     Smith treatment_a     13
-## 2       Jane       Doe treatment_a     11
-## 3       Mary   Johnson treatment_a     10
+## 1       John     Smith treatment_a     16
+## 2       Jane       Doe treatment_a     17
+## 3       Mary   Johnson treatment_a     14
 ## 4       John     Smith treatment_b     20
-## 5       Jane       Doe treatment_b     16
-## 6       Mary   Johnson treatment_b     21
-## 7       John     Smith treatment_c     21
-## 8       Jane       Doe treatment_c     16
-## 9       Mary   Johnson treatment_c     22
+## 5       Jane       Doe treatment_b     18
+## 6       Mary   Johnson treatment_b     22
+## 7       John     Smith treatment_c     23
+## 8       Jane       Doe treatment_c     25
+## 9       Mary   Johnson treatment_c     10
 \end{verbatim}
 
 \end{frame}
@@ -1334,12 +1334,12 @@ Jane & Doe & 33 & F & 57 Rue de Varenne\\
 
 \begin{verbatim}
 ##   First_Name Last_Name   treatment result
-## 1       John     Smith treatment_a     13
-## 2       Jane       Doe treatment_a     11
+## 1       John     Smith treatment_a     16
+## 2       Jane       Doe treatment_a     17
 ## 3       John     Smith treatment_b     20
-## 4       Jane       Doe treatment_b     16
-## 5       John     Smith treatment_c     21
-## 6       Jane       Doe treatment_c     16
+## 4       Jane       Doe treatment_b     18
+## 5       John     Smith treatment_c     23
+## 6       Jane       Doe treatment_c     25
 \end{verbatim}
 
 \end{frame}

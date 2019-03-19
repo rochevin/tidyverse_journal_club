@@ -19,30 +19,31 @@ require(knitr)
 require(kableExtra)
 ```
 
+#Preamble
+
+##R for data science
+
+
+
+```{r out.width = "60%", fig.align = "center"}
+knitr::include_graphics("images/cover.png")
+```
+
+*__R for data science__: The best place to start learning the tidyverse by Hadley Wickham and Garrett Grolemund (available online : https://r4ds.had.co.nz).
+*__ggplot2: elegant graphics for data science__ by Hadley Wickham. Goes into greater depth into the ggplot2 visualisation system.
+
 
 #Tidyverse & tidy data
 
 ##Tidyverse
 
+__R packages for data science:__
 
-\begin{columns}
-    \begin{column}{0.3\textwidth}
-\includegraphics{images/Tidyverse.pdf}
-    \end{column}
-    \begin{column}{0.7\textwidth}
-    \begin{Huge}
-        \textbf{R packages for data science}
-    \end{Huge}
-    
-    \begin{Large}
-        The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.\\
-        \url{https://www.tidyverse.org/}
-    \end{Large}
+```{r out.width = "100%", fig.align = "center"}
+knitr::include_graphics("images/Tidyverse.png")
+```
 
-
-    
-    \end{column}
-\end{columns}
+The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures. (https://www.tidyverse.org/)
 
 ```{r, echo=T,eval=F}
 install.packages("tidyverse")
@@ -56,14 +57,16 @@ require(tidyverse)
 
 
 ## Tidy data
-\begin{Large}
-\textit{\textbf{Tidying:} structuring datasets to facilitate analysis.}
-\end{Large}
-\begin{center}
-A tidy dataset :\\
-\includegraphics{images/tidy-1.png}
 
-\end{center}
+_ __Tidying:__ structuring datasets to facilitate analysis._
+
+A tidy dataset :
+
+```{r out.width = "40%", fig.align = "center"}
+knitr::include_graphics("images/tidy-1.png")
+```
+
+
 ## Why tidying a dataset ?
 
 ```{r define, echo=F, message=FALSE, warning=FALSE}

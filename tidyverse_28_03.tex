@@ -111,6 +111,19 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
 
 \title{Journal Club Bioinfo}
 \subtitle{\textbf{The Tidyverse}: A collection of R packages designed for data
@@ -219,24 +232,20 @@ A tidy dataset :\\
 
 \begin{frame}[fragile]{Why tidying a dataset ?}
 
-\begin{center}
 \begin{table}[t]
 
 \caption{\label{tab:show1}Typical presentation dataset}
 \centering
-\begin{tabular}{l|r|r|r}
-\hline
+\begin{tabular}{lrrr}
+\toprule
   & treatment\_a & treatment\_b & treatment\_c\\
-\hline
-John Smith & 12 & 14 & 15\\
-\hline
-Jane Doe & 22 & 16 & 11\\
-\hline
-Mary Johnson & 16 & 21 & 25\\
-\hline
+\midrule
+\rowcolor{gray!6}  John Smith & 14 & 10 & 22\\
+Jane Doe & 14 & 23 & 17\\
+\rowcolor{gray!6}  Mary Johnson & 20 & 14 & 10\\
+\bottomrule
 \end{tabular}
 \end{table}
-\end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -261,16 +270,14 @@ Mary Johnson & 16 & 21 & 25\\
 
 \caption{\label{tab:unnamed-chunk-4}The same data but structured differently}
 \centering
-\begin{tabular}{l|r|r|r}
-\hline
+\begin{tabular}{lrrr}
+\toprule
   & John Smith & Jane Doe & Mary Johnson\\
-\hline
-treatment\_a & 12 & 22 & 16\\
-\hline
-treatment\_b & 14 & 16 & 21\\
-\hline
-treatment\_c & 15 & 11 & 25\\
-\hline
+\midrule
+\rowcolor{gray!6}  treatment\_a & 14 & 14 & 20\\
+treatment\_b & 10 & 23 & 14\\
+\rowcolor{gray!6}  treatment\_c & 22 & 17 & 10\\
+\bottomrule
 \end{tabular}
 \end{table}
 \end{center}
@@ -287,36 +294,34 @@ treatment\_c & 15 & 11 & 25\\
 
 \begin{frame}[fragile]{Why tidying a dataset ?}
 
-\begin{center}
 \begin{table}[t]
 
 \caption{\label{tab:unnamed-chunk-5}An exemple of a tidy dataset}
 \centering
-\begin{tabular}{l|l|r}
+\begin{tabular}{l|l|l}
 \hline
 person & treatment & result\\
 \hline
-John Smith & treatment\_a & 12\\
+\multicolumn{1}{c}{\cellcolor[HTML]{E41A1C}{John Smith}} & \multicolumn{1}{c}{\cellcolor[HTML]{FC8D59}{treatment\_a}} & \multicolumn{1}{c}{\cellcolor{black}{\textcolor{white}{14}}}\\
 \hline
-Jane Doe & treatment\_a & 22\\
+\multicolumn{1}{c}{\cellcolor[HTML]{377EB8}{Jane Doe}} & \multicolumn{1}{c}{\cellcolor[HTML]{FC8D59}{treatment\_a}} & \multicolumn{1}{c}{\cellcolor{black}{\textcolor{white}{14}}}\\
 \hline
-Mary Johnson & treatment\_a & 16\\
+\multicolumn{1}{c}{\cellcolor[HTML]{4DAF4A}{Mary Johnson}} & \multicolumn{1}{c}{\cellcolor[HTML]{FC8D59}{treatment\_a}} & \multicolumn{1}{c}{\cellcolor{black}{\textcolor{white}{20}}}\\
 \hline
-John Smith & treatment\_b & 14\\
+\multicolumn{1}{c}{\cellcolor[HTML]{E41A1C}{John Smith}} & \multicolumn{1}{c}{\cellcolor[HTML]{FFFFBF}{treatment\_b}} & \multicolumn{1}{c}{\cellcolor{black}{\textcolor{white}{10}}}\\
 \hline
-Jane Doe & treatment\_b & 16\\
+\multicolumn{1}{c}{\cellcolor[HTML]{377EB8}{Jane Doe}} & \multicolumn{1}{c}{\cellcolor[HTML]{FFFFBF}{treatment\_b}} & \multicolumn{1}{c}{\cellcolor{black}{\textcolor{white}{23}}}\\
 \hline
-Mary Johnson & treatment\_b & 21\\
+\multicolumn{1}{c}{\cellcolor[HTML]{4DAF4A}{Mary Johnson}} & \multicolumn{1}{c}{\cellcolor[HTML]{FFFFBF}{treatment\_b}} & \multicolumn{1}{c}{\cellcolor{black}{\textcolor{white}{14}}}\\
 \hline
-John Smith & treatment\_c & 15\\
+\multicolumn{1}{c}{\cellcolor[HTML]{E41A1C}{John Smith}} & \multicolumn{1}{c}{\cellcolor[HTML]{99D594}{treatment\_c}} & \multicolumn{1}{c}{\cellcolor{black}{\textcolor{white}{22}}}\\
 \hline
-Jane Doe & treatment\_c & 11\\
+\multicolumn{1}{c}{\cellcolor[HTML]{377EB8}{Jane Doe}} & \multicolumn{1}{c}{\cellcolor[HTML]{99D594}{treatment\_c}} & \multicolumn{1}{c}{\cellcolor{black}{\textcolor{white}{17}}}\\
 \hline
-Mary Johnson & treatment\_c & 25\\
+\multicolumn{1}{c}{\cellcolor[HTML]{4DAF4A}{Mary Johnson}} & \multicolumn{1}{c}{\cellcolor[HTML]{99D594}{treatment\_c}} & \multicolumn{1}{c}{\cellcolor{black}{\textcolor{white}{10}}}\\
 \hline
 \end{tabular}
 \end{table}
-\end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -502,9 +507,9 @@ Mary Johnson & treatment\_c & 25\\
 ## # A tibble: 3 x 4
 ##   `:)`         treatment_a treatment_b treatment_c
 ##   <chr>              <int>       <int>       <int>
-## 1 John Smith            12          14          15
-## 2 Jane Doe              22          16          11
-## 3 Mary Johnson          16          21          25
+## 1 John Smith            14          10          22
+## 2 Jane Doe              14          23          17
+## 3 Mary Johnson          20          14          10
 \end{verbatim}
 
 \end{frame}
@@ -632,15 +637,15 @@ the value.
 
 \begin{verbatim}
 ##         person   treatment result
-## 1   John Smith treatment_a     12
-## 2     Jane Doe treatment_a     22
-## 3 Mary Johnson treatment_a     16
-## 4   John Smith treatment_b     14
-## 5     Jane Doe treatment_b     16
-## 6 Mary Johnson treatment_b     21
-## 7   John Smith treatment_c     15
-## 8     Jane Doe treatment_c     11
-## 9 Mary Johnson treatment_c     25
+## 1   John Smith treatment_a     14
+## 2     Jane Doe treatment_a     14
+## 3 Mary Johnson treatment_a     20
+## 4   John Smith treatment_b     10
+## 5     Jane Doe treatment_b     23
+## 6 Mary Johnson treatment_b     14
+## 7   John Smith treatment_c     22
+## 8     Jane Doe treatment_c     17
+## 9 Mary Johnson treatment_c     10
 \end{verbatim}
 
 \begin{Shaded}
@@ -651,9 +656,9 @@ the value.
 
 \begin{verbatim}
 ##         person treatment_a treatment_b treatment_c
-## 1     Jane Doe          22          16          11
-## 2   John Smith          12          14          15
-## 3 Mary Johnson          16          21          25
+## 1     Jane Doe          14          23          17
+## 2   John Smith          14          10          22
+## 3 Mary Johnson          20          14          10
 \end{verbatim}
 
 \end{frame}
@@ -668,15 +673,15 @@ the value.
 
 \begin{verbatim}
 ##   First Name Last Name   treatment result
-## 1       John     Smith treatment_a     12
-## 2       Jane       Doe treatment_a     22
-## 3       Mary   Johnson treatment_a     16
-## 4       John     Smith treatment_b     14
-## 5       Jane       Doe treatment_b     16
-## 6       Mary   Johnson treatment_b     21
-## 7       John     Smith treatment_c     15
-## 8       Jane       Doe treatment_c     11
-## 9       Mary   Johnson treatment_c     25
+## 1       John     Smith treatment_a     14
+## 2       Jane       Doe treatment_a     14
+## 3       Mary   Johnson treatment_a     20
+## 4       John     Smith treatment_b     10
+## 5       Jane       Doe treatment_b     23
+## 6       Mary   Johnson treatment_b     14
+## 7       John     Smith treatment_c     22
+## 8       Jane       Doe treatment_c     17
+## 9       Mary   Johnson treatment_c     10
 \end{verbatim}
 
 \end{frame}
@@ -698,30 +703,24 @@ the value.
   Group / summarise observations.
 \end{itemize}
 
-\begin{center}
 \begin{table}[t]
 
 \caption{\label{tab:unnamed-chunk-20}iris dataset}
 \centering
-\begin{tabular}{r|r|r|r|l}
-\hline
+\begin{tabular}{rrrrl}
+\toprule
 Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\hline
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-\hline
+\midrule
+\rowcolor{gray!6}  5.1 & 3.5 & 1.4 & 0.2 & setosa\\
 4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-\hline
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-\hline
+\rowcolor{gray!6}  4.7 & 3.2 & 1.3 & 0.2 & setosa\\
 4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-\hline
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\hline
+\rowcolor{gray!6}  5.0 & 3.6 & 1.4 & 0.2 & setosa\\
+\addlinespace
 5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
-\end{center}
 
 \begin{block}{iris dataset}
 
@@ -893,38 +892,6 @@ other functions:
 \item
   \texttt{dplyr::mutate\_at()}: Apply a function to specific column.
 \end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Mutating joins using \texttt{dplyr::*\_join()}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{iris.meta <-}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}
-    \DataTypeTok{Species =} \KeywordTok{factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"setosa"}\NormalTok{,}\StringTok{"versicolor"}\NormalTok{,}\StringTok{"virginica"}\NormalTok{)),}
-    \DataTypeTok{Colony =} \KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"A"}\NormalTok{,}\StringTok{"B"}\NormalTok{) ,}
-    \DataTypeTok{Ploidy =} \KeywordTok{c}\NormalTok{(}\StringTok{"diploid"}\NormalTok{,}\StringTok{"hexaploid"}\NormalTok{,}\StringTok{"tetraploid"}\NormalTok{),}
-    \StringTok{`}\DataTypeTok{Common name}\StringTok{`}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Beachhead iris"}\NormalTok{,}\StringTok{"Harlequin blueflag"}\NormalTok{,}\StringTok{"Virginia iris"}\NormalTok{)}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}[t]
-
-\caption{\label{tab:unnamed-chunk-32}Metadata for iris dataset}
-\centering
-\begin{tabular}{l|l|l|l}
-\hline
-Species & Colony & Ploidy & Common name\\
-\hline
-setosa & A & diploid & Beachhead iris\\
-\hline
-versicolor & A & hexaploid & Harlequin blueflag\\
-\hline
-virginica & B & tetraploid & Virginia iris\\
-\hline
-\end{tabular}
-\end{table}
 
 \end{frame}
 
@@ -1156,6 +1123,36 @@ Use \texttt{desc()} to order by high to low.
 
 \end{frame}
 
+\begin{frame}[fragile]{Mutating joins using \texttt{dplyr::*\_join()}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris.meta <-}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}
+    \DataTypeTok{Species =} \KeywordTok{factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"setosa"}\NormalTok{,}\StringTok{"versicolor"}\NormalTok{,}\StringTok{"virginica"}\NormalTok{)),}
+    \DataTypeTok{Colony =} \KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"A"}\NormalTok{,}\StringTok{"B"}\NormalTok{) ,}
+    \DataTypeTok{Ploidy =} \KeywordTok{c}\NormalTok{(}\StringTok{"diploid"}\NormalTok{,}\StringTok{"hexaploid"}\NormalTok{,}\StringTok{"tetraploid"}\NormalTok{),}
+    \StringTok{`}\DataTypeTok{Common name}\StringTok{`}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Beachhead iris"}\NormalTok{,}\StringTok{"Harlequin blueflag"}\NormalTok{,}\StringTok{"Virginia iris"}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[t]
+
+\caption{\label{tab:unnamed-chunk-43}Metadata for iris dataset}
+\centering
+\begin{tabular}{llll}
+\toprule
+Species & Colony & Ploidy & Common name\\
+\midrule
+\rowcolor{gray!6}  setosa & A & diploid & Beachhead iris\\
+versicolor & A & hexaploid & Harlequin blueflag\\
+\rowcolor{gray!6}  virginica & B & tetraploid & Virginia iris\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{frame}
+
 \begin{frame}[fragile]{Inner join}
 
 \textbf{Inner join:} return all rows from \texttt{x} where there are
@@ -1205,9 +1202,23 @@ matching values in \texttt{y}, and all columns from \texttt{x} and
 
 \end{frame}
 
-\begin{frame}[fragile]{Outer joins}
+\begin{frame}[fragile]{Left join}
 
-\small
+\begin{table}[t]
+
+\caption{\label{tab:unnamed-chunk-47}Metadata for iris dataset}
+\centering
+\begin{tabular}{llll}
+\toprule
+Species & Colony & Ploidy & Common name\\
+\midrule
+\rowcolor{gray!6}  \sout{setosa} & \sout{A} & \sout{diploid} & \sout{Beachhead iris}\\
+versicolor & A & hexaploid & Harlequin blueflag\\
+\rowcolor{gray!6}  virginica & B & tetraploid & Virginia iris\\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \textbf{left join:}
 
 \begin{Shaded}
@@ -1228,6 +1239,31 @@ matching values in \texttt{y}, and all columns from \texttt{x} and
 ## 5          5           3.6          1.4         0.2 setosa  <NA>   <NA>  
 ## # ... with 145 more rows, and 1 more variable: `Common name` <chr>
 \end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Right join}
+
+\small
+
+\begin{table}[t]
+
+\caption{\label{tab:unnamed-chunk-49}iris dataset}
+\centering
+\begin{tabular}{rrrrl}
+\toprule
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
+\midrule
+\rowcolor{gray!6}  \sout{5.1} & \sout{3.5} & \sout{1.4} & \sout{0.2} & \sout{setosa}\\
+\sout{4.9} & \sout{3.0} & \sout{1.4} & \sout{0.2} & \sout{setosa}\\
+\rowcolor{gray!6}  7.0 & 3.2 & 4.7 & 1.4 & versicolor\\
+6.4 & 3.2 & 4.5 & 1.5 & versicolor\\
+\rowcolor{gray!6}  6.3 & 3.3 & 6.0 & 2.5 & virginica\\
+\addlinespace
+5.8 & 2.7 & 5.1 & 1.9 & virginica\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \textbf{right join:}
 
@@ -1260,7 +1296,8 @@ matching values in \texttt{y}, and all columns from \texttt{x} and
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{iris.meta.nosetosa <-}\StringTok{ }\NormalTok{iris.meta }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Species }\OperatorTok{!=}\StringTok{"setosa"}\NormalTok{)}
-\NormalTok{iris.tbl }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Species }\OperatorTok{!=}\StringTok{ "virginica"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{full_join}\NormalTok{(iris.meta.nosetosa,}\DataTypeTok{by =} \StringTok{"Species"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{print}\NormalTok{(}\DataTypeTok{n=}\DecValTok{3}\NormalTok{)}
+\NormalTok{iris.tbl }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Species }\OperatorTok{!=}\StringTok{ "virginica"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{full_join}\NormalTok{(iris.meta.nosetosa,}\DataTypeTok{by =} \StringTok{"Species"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1311,16 +1348,15 @@ matching values in \texttt{y}, and all columns from \texttt{x} and
 
 \begin{table}[t]
 
-\caption{\label{tab:unnamed-chunk-53}Patients files}
+\caption{\label{tab:unnamed-chunk-55}Patients files}
 \centering
-\begin{tabular}{l|l|r|l|l}
-\hline
+\begin{tabular}{llrll}
+\toprule
 First\_Name & Last\_Name & age & sex & adress\\
-\hline
-John & Smith & 46 & M & 221B Baker Street\\
-\hline
+\midrule
+\rowcolor{gray!6}  John & Smith & 46 & M & 221B Baker Street\\
 Jane & Doe & 33 & F & 57 Rue de Varenne\\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -1334,12 +1370,12 @@ Jane & Doe & 33 & F & 57 Rue de Varenne\\
 
 \begin{verbatim}
 ##   First_Name Last_Name   treatment result
-## 1       John     Smith treatment_a     12
-## 2       Jane       Doe treatment_a     22
-## 3       John     Smith treatment_b     14
-## 4       Jane       Doe treatment_b     16
-## 5       John     Smith treatment_c     15
-## 6       Jane       Doe treatment_c     11
+## 1       John     Smith treatment_a     14
+## 2       Jane       Doe treatment_a     14
+## 3       John     Smith treatment_b     10
+## 4       Jane       Doe treatment_b     23
+## 5       John     Smith treatment_c     22
+## 6       Jane       Doe treatment_c     17
 \end{verbatim}
 
 \end{frame}

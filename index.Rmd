@@ -17,6 +17,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 require(knitr)
 require(kableExtra)
+options(knitr.table.format = "html")
 ```
 
 #Preamble
@@ -120,8 +121,8 @@ treatments.3 <- tidyr::gather(treatments.3,key="treatment",value = "result",-per
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE,results='asis'}
-
-kable(treatments.3,caption = "An exemple of a tidy dataset") %>%
+treatments.3 %>% mutate(treatment = cell_spec(treatment, align = "c",background =factor(treatment,unique(treatments.3$treatment),RColorBrewer::brewer.pal(length(unique(treatments.3$treatment)), "Spectral")))) %>% mutate(person = cell_spec(person, align = "c",background =factor(person,unique(treatments.3$person),RColorBrewer::brewer.pal(length(unique(treatments.3$treatment)), "Set1")))) %>% 
+    mutate(result = cell_spec(result, align = "c",background ="black",color = "white")) %>% kable(caption = "An exemple of a tidy dataset",escape=F) %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
@@ -401,20 +402,6 @@ other functions:
 * `dplyr::mutate_all()`: Apply a function to every columns.
 * `dplyr::mutate_at()`: Apply a function to specific column.
 
-##Mutating joins using `dplyr::*_join()`
-
-```{r echo=TRUE}
-iris.meta <- tibble(
-    Species = factor(c("setosa","versicolor","virginica")),
-    Colony = c("A","A","B") ,
-    Ploidy = c("diploid","hexaploid","tetraploid"),
-    `Common name` = c("Beachhead iris","Harlequin blueflag","Virginia iris")
-)
-```
-```{r,results='asis'}
-iris.meta %>% kable(caption = "Metadata for iris dataset") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"))
-```
 
 
 ##Arrange dataset using `dplyr::arrange()`
@@ -490,6 +477,22 @@ iris.tbl %>% group_by(Species) %>% filter(Petal.Length >= max(Petal.Length))
 iris.tbl %>% group_by(Species) %>% top_n(1,Petal.Length)
 ```
 
+##Mutating joins using `dplyr::*_join()`
+
+```{r echo=TRUE}
+iris.meta <- tibble(
+    Species = factor(c("setosa","versicolor","virginica")),
+    Colony = c("A","A","B") ,
+    Ploidy = c("diploid","hexaploid","tetraploid"),
+    `Common name` = c("Beachhead iris","Harlequin blueflag","Virginia iris")
+)
+```
+```{r,results='asis'}
+iris.meta %>% kable(caption = "Metadata for iris dataset") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+
 ##Inner join
 
 __Inner join:__ return all rows from `x` where there are matching values in `y`, and all columns from `x` and `y`. If there are multiple matches between `x` and `y`, all combination of the matches are returned.
@@ -516,14 +519,23 @@ iris.tbl %>% inner_join(iris.meta.nosetosa,by = "Species") %>% print(n=5)
 knitr::include_graphics("images/join-outer.png")
 ```
 
-##Outer joins
+##Left join
 
-\small
+```{r}
+iris.meta %>% kable(caption = "Metadata for iris dataset",booktabs = T) %>%kable_styling(bootstrap_options = c("striped", "hover")) %>% row_spec(1, strikeout = T)
+```
+
 __left join:__
 
 ```{r echo=TRUE}
 iris.meta.nosetosa <- iris.meta %>% filter(Species !="setosa")
 iris.tbl %>% left_join(iris.meta.nosetosa,by = "Species") %>% print(n=5)
+```
+
+##Right join
+
+```{r}
+iris.tbl %>% group_by(Species) %>%slice(1:2) %>% kable(caption = "iris dataset",booktabs = T) %>%kable_styling(bootstrap_options = c("striped", "hover")) %>% row_spec(1:2,strikeout = T)
 ```
 
 __right join:__
@@ -533,13 +545,14 @@ iris.tbl.nosetosa <- iris.tbl %>% filter(Species !="setosa")
 iris.tbl.nosetosa %>% right_join(iris.meta,by = "Species") %>% print(n=5)
 ```
 
+
 ##Outer joins
 \small
 __full join:__
 
 ```{r echo=TRUE,eval=F}
 iris.meta.nosetosa <- iris.meta %>% filter(Species !="setosa")
-iris.tbl %>% filter(Species != "virginica") %>% full_join(iris.meta.nosetosa,by = "Species") %>% print(n=3)
+iris.tbl %>% filter(Species != "virginica") %>% full_join(iris.meta.nosetosa,by = "Species")
 ```
 
 ```{r echo=F}

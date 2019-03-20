@@ -6,6 +6,20 @@ date: "28 mars 2019"
 documentclass: bredelebeamer
 fontsize: 14pt
 latex_engine: xelatex
+header-includes:
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \usepackage[normalem]{ulem}
+- \usepackage{makecell}
 output: 
     beamer_presentation:
         slide_level: 2
@@ -22,6 +36,8 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 require(knitr)
 require(kableExtra)
+options(kableExtra.latex.load_packages = FALSE)
+options(knitr.table.format = "latex")
 ```
 
 
@@ -81,11 +97,11 @@ treatments <-
 rownames(treatments) <- c("John Smith","Jane Doe","Mary Johnson")
 ```
 
-\begin{center}
+
 ```{r show1, echo=F}
-kable(treatments,"latex",caption = "Typical presentation dataset")
+kable(treatments,caption = "Typical presentation dataset",booktabs = T) %>%kable_styling(latex_options = "striped",position = "center")
 ```
-\end{center}
+
 
 
 ```{r boxplot1, echo=TRUE, fig.height=4, fig.width=8}
@@ -101,7 +117,7 @@ treatments.2 <- t(treatments)
 
 \begin{center}
 ```{r, echo=F}
-kable(treatments.2,"latex",caption = "The same data but structured differently")
+kable(treatments.2,caption = "The same data but structured differently",booktabs = T) %>%kable_styling(latex_options = "striped",position = "center")
 ```
 \end{center}
 
@@ -113,15 +129,21 @@ boxplot(treatments.2)
 
 ## Why tidying a dataset ?
 
-\begin{center}
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE,results='asis'}
 treatments.3 <- tibble::rownames_to_column(treatments,var = "person")
 treatments.3 <- tidyr::gather(treatments.3,key="treatment",value = "result",-person)
-kable(treatments.3,"latex",caption = "An exemple of a tidy dataset")
-```
-\end{center}
 
-```{r boxplot3, echo=TRUE, fig.height=3, fig.width=8, message=FALSE, warning=FALSE}
+
+
+treatments.3 %>%
+    mutate(treatment = cell_spec(treatment, align = "c",background =factor(treatment,unique(treatments.3$treatment),RColorBrewer::brewer.pal(length(unique(treatments.3$treatment)), "Spectral")))) %>%
+    mutate(person = cell_spec(person, align = "c",background =factor(person,unique(treatments.3$person),RColorBrewer::brewer.pal(length(unique(treatments.3$treatment)), "Set1")))) %>% 
+    mutate(result = cell_spec(result, align = "c",background ="black",color = "white")) %>% kable(caption = "An exemple of a tidy dataset",escape=F) %>%kable_styling(position = "center")
+```
+
+
+```{r boxplot3, echo=TRUE, fig.height=2.8, fig.width=8, message=FALSE, warning=FALSE}
 boxplot(result~treatment,data=treatments.3)
 ```
 
@@ -300,12 +322,12 @@ __`dplyr`:__
 * Manipulate observations.
 * Group / summarise observations.
 
-\begin{center}
+
 ```{r}
 iris.tbl <- iris %>% as_tibble()
-iris.tbl %>% head() %>% kable(format = "latex",caption = "iris dataset")
+iris.tbl %>% head() %>% kable(caption = "iris dataset",booktabs = T) %>%kable_styling(latex_options = "striped",position = "center")
 ```
-\end{center}
+
 
 ###iris dataset
 The famous (Fisher’s or Anderson’s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica. (from ?iris)
@@ -389,19 +411,6 @@ other functions:
 * `dplyr::mutate_all()`: Apply a function to every columns.
 * `dplyr::mutate_at()`: Apply a function to specific column.
 
-##Mutating joins using `dplyr::*_join()`
-
-```{r echo=TRUE}
-iris.meta <- tibble(
-    Species = factor(c("setosa","versicolor","virginica")),
-    Colony = c("A","A","B") ,
-    Ploidy = c("diploid","hexaploid","tetraploid"),
-    `Common name` = c("Beachhead iris","Harlequin blueflag","Virginia iris")
-)
-```
-```{r}
-iris.meta %>% kable("latex",caption = "Metadata for iris dataset")
-```
 
 
 ##Arrange dataset using `dplyr::arrange()`
@@ -477,6 +486,21 @@ iris.tbl %>% group_by(Species) %>% filter(Petal.Length >= max(Petal.Length))
 iris.tbl %>% group_by(Species) %>% top_n(1,Petal.Length)
 ```
 
+##Mutating joins using `dplyr::*_join()`
+
+```{r echo=TRUE}
+iris.meta <- tibble(
+    Species = factor(c("setosa","versicolor","virginica")),
+    Colony = c("A","A","B") ,
+    Ploidy = c("diploid","hexaploid","tetraploid"),
+    `Common name` = c("Beachhead iris","Harlequin blueflag","Virginia iris")
+)
+```
+```{r}
+iris.meta %>% kable(caption = "Metadata for iris dataset",booktabs = T) %>%kable_styling(latex_options = "striped",position = "center")
+```
+
+
 ##Inner join
 
 __Inner join:__ return all rows from `x` where there are matching values in `y`, and all columns from `x` and `y`. If there are multiple matches between `x` and `y`, all combination of the matches are returned.
@@ -503,14 +527,23 @@ iris.tbl %>% inner_join(iris.meta.nosetosa,by = "Species") %>% print(n=5)
 knitr::include_graphics("images/join-outer.png")
 ```
 
-##Outer joins
+##Left join
 
-\small
+```{r}
+iris.meta %>% kable(caption = "Metadata for iris dataset",booktabs = T) %>%kable_styling(latex_options = "striped",position = "center") %>% row_spec(1, strikeout = T)
+```
+
 __left join:__
 
 ```{r echo=TRUE}
 iris.meta.nosetosa <- iris.meta %>% filter(Species !="setosa")
 iris.tbl %>% left_join(iris.meta.nosetosa,by = "Species") %>% print(n=5)
+```
+
+##Right join
+\small
+```{r}
+iris.tbl %>% group_by(Species) %>%slice(1:2) %>% kable(caption = "iris dataset",booktabs = T) %>%kable_styling(latex_options = "striped",position = "center") %>% row_spec(1:2,strikeout = T)
 ```
 
 __right join:__
@@ -526,7 +559,8 @@ __full join:__
 
 ```{r echo=TRUE,eval=F}
 iris.meta.nosetosa <- iris.meta %>% filter(Species !="setosa")
-iris.tbl %>% filter(Species != "virginica") %>% full_join(iris.meta.nosetosa,by = "Species") %>% print(n=3)
+iris.tbl %>% filter(Species != "virginica") %>%
+    full_join(iris.meta.nosetosa,by = "Species")
 ```
 
 ```{r echo=F}
@@ -558,7 +592,7 @@ treatment.meta <- tibble(
     sex = c("M","F"),
     adress = c("221B Baker Street","57 Rue de Varenne")
 )
-treatment.meta %>% kable("latex",caption = "Patients files")
+treatment.meta %>% kable("latex",caption = "Patients files",booktabs = T) %>%kable_styling(latex_options = "striped",position = "center")
 ```
 
 ```{r echo=TRUE}

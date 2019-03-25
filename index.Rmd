@@ -59,7 +59,7 @@ require(tidyverse)
 
 ## Tidy data
 
-_ __Tidying:__ structuring datasets to facilitate analysis._
+__Tidying:__ structuring datasets to facilitate analysis._
 
 A tidy dataset :
 

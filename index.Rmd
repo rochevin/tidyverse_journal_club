@@ -921,7 +921,7 @@ cowplot::plot_grid(p,p1)
 
 * __ggplot2__ extensions: This site tracks and lists ggplot2 extensions developed by R users in the community. [https://www.ggplot2-exts.org/](https://www.ggplot2-exts.org/).
 * __cowplot__: Arranging graphs into a grid and improve plot design.
-* __ggpubr__ \& __ ggstatsplot__: Publication ready plots \& add statistical tests.
+* __ggpubr & ggstatsplot__: Publication ready plots \& add statistical tests.
 * __ggrepel__: Automatic label placement.
 * __esquisse__: Explore and Visualize Your Data Interactively with ggplot2.
 * __ggvis__: Create rich interactive graphics with a syntax similar in spirit to ggplot2.
